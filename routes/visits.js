@@ -5,12 +5,12 @@ var Visit = require('../models/visit');
 
 // GET /
 	router.get('/', function(req, res, next) {
-		Card.find({})
-		.exec(function(err,cards){
+		Visit.find({})
+		.exec(function(err,visits){
 			if(err){
 				return res.status(500).json({message:err.message});
 			}
-			res.json(cards);
+			res.json(visits);
 		})
 	});
 
@@ -22,6 +22,17 @@ var Visit = require('../models/visit');
 				return res.status(500).json({message:err.message});
 			}
 			return res.status(200).send({message:'success',visit:visit});
+		});
+	});
+
+// DELETE /
+	router.delete('/:id', function(req, res, next) {
+		var id = req.params.id;
+		Visit.findByIdAndRemove({_id:id},function(err){
+			if(err){
+				return res.status(500).json({message:err.message});
+			}
+			return res.status(200).send({message:'success'});
 		});
 	});
 

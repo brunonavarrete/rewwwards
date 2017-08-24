@@ -27,4 +27,15 @@ var Client = require('../models/client');
 		});
 	});
 
+// DELETE /
+	router.delete('/:id', function(req, res, next) {
+		var id = req.params.id;
+		Client.findByIdAndRemove({_id:id},function(err){
+			if(err){
+				return res.status(500).json({message:err.message});
+			}
+			return res.status(200).send({message:'success'});
+		});
+	});
+
 module.exports = router;
