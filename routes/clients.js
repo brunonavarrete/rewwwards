@@ -3,6 +3,17 @@ var router = express.Router();
 var path = require('path');
 var Client = require('../models/client');
 
+// GET /
+	router.get('/', function(req, res, next) {
+		Client.find({})
+		.exec(function(err,clients){
+			if(err){
+				return res.status(500).json({message:err.message});
+			}
+			res.json(clients);
+		})
+	});
+
 // POST /
 	router.post('/', function(req, res, next) {
 		var client = req.body;
