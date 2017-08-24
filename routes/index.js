@@ -7,9 +7,4 @@ var path = require('path');
 		res.send('../public/index.html');
 	});
 
-// GET register
-	router.get('/register',function(req,res){
-		res.sendFile(path.join(__dirname + '/../public/register.html'));
-	});
-
 module.exports = router;

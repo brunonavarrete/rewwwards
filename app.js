@@ -8,7 +8,9 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session); // connect-mongo will access our sessions
 var index = require('./routes/index');
-var users = require('./routes/users');
+var clients = require('./routes/clients');
+var cards = require('./routes/cards');
+var visits = require('./routes/visits');
 
 var app = express();
 
@@ -51,7 +53,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/clients', clients);
+app.use('/cards', cards);
+app.use('/visits', visits);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -62,13 +66,14 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // // set locals, only providing error in development
+  // res.locals.message = err.message;
+  // res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  // // render the error page
+  // res.status(err.status || 500);
+  // res.render('error');
+  return res.status(500).json({message:err.message});
 });
 
 module.exports = app;
