@@ -15,7 +15,7 @@ var ClientSchema = new Schema({
 		validate: [mongooseValidate.email, 'invalid email address']
 	},
 	phone: Number,
-	bithday: Date,
+	birthday: Date,
 	cards: [] // [{type: Schema.Types.ObjectId, ref: 'Card'}]
 }, {timestamps:true} );
 

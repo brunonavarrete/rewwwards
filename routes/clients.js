@@ -27,7 +27,49 @@ var Client = require('../models/client');
 		});
 	});
 
-// DELETE /
+// PUT
+	// update data
+		router.put('/:id', function(req, res, next) {
+			var id = req.params.id;
+			Client.findById(id)
+			.exec(function(err,client){
+				if(err){
+					return res.status(500).json({message:err.message});
+				}
+				client.first_name = req.body.first_name;
+		        client.last_name = req.body.last_name;
+		        client.email = req.body.email;
+		        client.phone = req.body.phone;
+		        client.birthday = req.body.birthday;
+				client.save(function(err){
+					if(err){
+						return res.status(500).json({message:err.message});
+					}
+					return res.status(200).send({message:'success',client:client});
+				});
+			});
+		});
+	// add card
+		router.put('/:id/card/:cardId', function(req, res, next) {
+			var id = req.params.id;
+			var add_card = req.params.cardId;
+			Client.findById(id)
+			.exec(function(err,client){
+				if(err){
+					return res.status(500).json({message:err.message});
+				}
+				client.cards.push(add_card);
+				//client.cards = [];
+				client.save(function(){
+					if(err){
+						return res.status(500).json({message:err.message});
+					}
+					return res.status(200).send({message:'success',client:client});
+				});
+			});
+		});
+
+// DELETE :id
 	router.delete('/:id', function(req, res, next) {
 		var id = req.params.id;
 		Client.findByIdAndRemove({_id:id},function(err){
