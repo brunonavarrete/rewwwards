@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var Schema = mongoose.Schema;
 
 var CardSchema = new Schema({
-    visits: [],
+    visits: [], // [{type: Schema.Types.ObjectId, ref: 'Card'}]
     client: String // {type: Schema.Types.ObjectId, ref: 'Card'}
 }, {timestamps:true} );
 

@@ -25,6 +25,36 @@ var Card = require('../models/card');
 		});
 	});
 
+// PUT /
+	router.put('/:id/visit/:visitId', function(req, res, next) {
+		var id = req.params.id;
+		var add_visit = req.params.visitId;
+		Card.findById(id)
+			.exec(function(err,card){
+				if(err){
+					return res.status(500).json({message:err.message});
+				}
+				card.visits.push(add_visit);
+				//card.visits = [];
+				card.save(function(){
+					if(err){
+						return res.status(500).json({message:err.message});
+					}
+					return res.status(200).send({message:'success',card:card});
+				});
+			});
+		// AndUpdate(
+		// 	{ _id:id },
+		// 	{ $set: { confirmed: toggle } },
+		// 	{ new: true },
+		// 	function(err,visit){
+		// 	if(err){
+		// 		return res.status(500).json({message:err.message});
+		// 	}
+		// 	return res.status(200).send({message:'success',visit:visit});
+		// });
+	});
+
 // DELETE /
 	router.delete('/:id', function(req, res, next) {
 		var id = req.params.id;

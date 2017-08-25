@@ -25,6 +25,22 @@ var Visit = require('../models/visit');
 		});
 	});
 
+// PUT /
+	router.put('/:id/:toggle', function(req, res, next) {
+		var id = req.params.id;
+		var toggle = req.params.toggle;
+		Visit.findByIdAndUpdate(
+			{ _id:id },
+			{ $set: { confirmed: toggle } },
+			{ new: true },
+			function(err,visit){
+			if(err){
+				return res.status(500).json({message:err.message});
+			}
+			return res.status(200).send({message:'success',visit:visit});
+		});
+	});
+
 // DELETE /
 	router.delete('/:id', function(req, res, next) {
 		var id = req.params.id;
