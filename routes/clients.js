@@ -4,24 +4,35 @@ var path = require('path');
 var Client = require('../models/client');
 
 
-// GET /
-	router.get('/', function(req, res, next) {
-		res.sendFile(path.join(__dirname + '/../public/clients.html'));
-	});
-
-
-
-	router.get('/all',function(req, res, next){
-		Client.find({})
-		.populate('visits')
-		.exec(function(err,clients){
-			if(err){
-				return res.status(500).json({message:err.message});
-			}
-			res.status(201);
-			return res.json(clients);
+// GET 
+	// view (list)
+		router.get('/', function(req, res, next) {
+			res.sendFile(path.join(__dirname + '/../public/clients.html'));
 		});
-	});
+
+	// GET all clients
+		router.get('/all',function(req, res, next){
+			Client.find({})
+			.exec(function(err,clients){
+				if(err){
+					return res.status(500).json({message:err.message});
+				}
+				res.status(201);
+				return res.json(clients);
+			});
+		});
+
+	// GET single client
+		router.get('/:id',function(req, res, next){
+			var id = req.params.id;
+			Client.findById(id)
+			.exec(function(err,client){
+				if(err){
+					return res.status(500).json({message:err.message});
+				}
+				return res.json(client);
+			});
+		});
 
 // POST /
 	router.post('/', function(req, res, next) {
