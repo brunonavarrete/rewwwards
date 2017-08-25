@@ -3,15 +3,24 @@ var router = express.Router();
 var path = require('path');
 var Client = require('../models/client');
 
+
 // GET /
 	router.get('/', function(req, res, next) {
+		res.sendFile(path.join(__dirname + '/../public/clients.html'));
+	});
+
+
+
+	router.get('/all',function(req, res, next){
 		Client.find({})
+		.populate('visits')
 		.exec(function(err,clients){
 			if(err){
 				return res.status(500).json({message:err.message});
 			}
-			res.json(clients);
-		})
+			res.status(201);
+			return res.json(clients);
+		});
 	});
 
 // POST /

@@ -18,7 +18,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 
 // serve static files
-app.use(express.static('public'));
+app.use('/static',express.static('public'));
 
 // database
 var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/rewwwards';
