@@ -2,14 +2,6 @@
 
 var module = angular.module('rewards', []);
 
-module.directive('clients',function(){
-	return {
-		templateUrl: 'templates/list.html',
-		controller: 'clientCtrl',
-		replace:true
-	}
-});
-
 module.service('clientService',function($http){
 	this.get = function(url,callback){
 		$http({ method: 'GET', url: url }).then(callback);
@@ -49,8 +41,22 @@ module.controller('clientCtrl',['$scope', 'clientService', function($scope,clien
 		});
 	}
 
-	$scope.toggleEdit = function(){
-		$scope.edit = !$scope.edit;
-	}
-
 }]);
+
+// directives
+
+	module.directive('list',function(){
+		return {
+			templateUrl: 'templates/list.html',
+			controller: 'clientCtrl',
+			replace:true
+		}
+	});
+
+	module.directive('register',function(){
+		return {
+			templateUrl: 'templates/registerClient.html',
+			controller: 'clientCtrl',
+			replace:true
+		}
+	});

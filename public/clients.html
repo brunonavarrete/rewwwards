@@ -10,7 +10,8 @@
   </head>
   <body ng-app="rewards">
     <div class="container table-responsive">
-	    <clients></clients>
+	    <list ng-show="!register"></list>
+      <register ng-show="register"></register>
 	</div>
 	<script type="text/javascript" src="/static/js/angular.min.js"></script>
 	<script type="text/javascript" src="/static/js/app/main.js"></script>

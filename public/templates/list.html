@@ -1,4 +1,4 @@
-<div class="row my-4">
+<div class="container my-4">
 	<table ng-show="!currentClient" class="table table-striped">
 	  <thead>
 	    <tr>
@@ -22,39 +22,41 @@
 	    </tr>
 	  </tbody>
 	</table>
-	<form ng-show="currentClient" class="card p-3 row col-md-4">
-		<h4>
+	<div class="row">
+		<div class="col-12">
+			<button ng-show="!edit" ng-click="register = !register" class="btn btn-success">Add client</button>
+		</div>
+	</div>
+	<form ng-show="currentClient" class="card p-3 row col-md-5">
+		<div class="form-group">
 			<span ng-hide="edit">{{currentClient.first_name}}</span>
-			<input ng-show="edit" type="text" name="first_name" ng-model="currentClient.first_name">
-			<span ng-hide="edit">{{currentClient.last_name}}</span>
-			<input ng-show="edit" type="text" name="last_name" ng-model="currentClient.last_name">
-		</h4>
-		<ul>
-			<li>
-				<strong>Email: </strong>
-				<span ng-hide="edit">{{currentClient.email}}</span>
-				<input ng-show="edit" type="text" name="email" ng-model="currentClient.email">
-			</li>
-			<li>
-				<strong>Phone: </strong>
-				<span ng-hide="edit">{{currentClient.phone}}</span>
-				<input ng-show="edit" type="text" name="phone" ng-model="currentClient.phone">
-			</li>
-			<li>
-				<strong>Birthday: </strong>
-				<span ng-hide="edit">{{currentClient.birthday}}</span>
-				<input ng-show="edit" type="text" name="birthday" ng-model="currentClient.birthday">
-			</li>
-			<li>
-				<strong>Client since: </strong>{{currentClient.createdAt}}
-			</li>
-		</ul>
-
-		<div class="row">
-			<button ng-show="edit" ng-click="toggleEdit()" class="col btn btn-light">cancel</button>
-			<button ng-show="edit" ng-click="update(currentClient)" class="col btn btn-success">save</button>
-			<button ng-hide="edit" ng-click="toggleEdit()" class="col btn btn-">edit</button>
-			<button ng-hide="edit" ng-click="showAll()" class="col btn btn-danger">back</button>
+			<input ng-show="edit" type="text" name="first_name" ng-model="currentClient.first_name" class="col-sm-6 form-contol">
+			<span ng-hide="edit">&nbsp;{{currentClient.last_name}}</span>
+			<input ng-show="edit" type="text" name="last_name" ng-model="currentClient.last_name" class="col-sm-6 float-md-right form-contol">
+		</div>
+		<div class="form-group">
+			<strong>Email: </strong>
+			<span ng-hide="edit">{{currentClient.email}}</span>
+			<input ng-show="edit" type="text" name="email" ng-model="currentClient.email" class="form-contol">
+		</div>
+		<div class="form-group">
+			<strong>Phone: </strong>
+			<span ng-hide="edit">{{currentClient.phone}}</span>
+			<input ng-show="edit" type="text" name="phone" ng-model="currentClient.phone" class="form-contol">
+		</div>
+		<div class="form-group">
+			<strong>Birthday: </strong>
+			<span ng-hide="edit">{{currentClient.birthday}}</span>
+			<input ng-show="edit" type="text" name="birthday" ng-model="currentClient.birthday" class="form-contol">
+		</div>
+		<div class="form-group">
+			<strong>Client since: </strong>{{currentClient.createdAt}}
+		</div>
+		<div class="form-group">
+			<button ng-hide="edit" ng-click="edit = !edit" class="btn btn-warning">Edit client</button>
+			<button ng-hide="edit" ng-click="showAll()" class="btn btn-danger">Back to list</button>
+			<button ng-show="edit" ng-click="update(currentClient)" class="btn btn-success">Update client</button>
+			<button ng-show="edit" ng-click="edit = !edit" class="btn btn-light">Cancel</button>
 		</div>
 	</form>
 </div>
