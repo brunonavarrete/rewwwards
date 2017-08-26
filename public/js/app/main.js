@@ -7,6 +7,10 @@ module.service('clientService',function($http){
 		$http({ method: 'GET', url: url }).then(callback);
 	};
 
+	this.post = function(url,data,callback){
+		$http({ method: 'POST', data, url: url }).then(callback);
+	};
+
 	this.put = function(url,data,callback){
 		$http({ method: 'PUT', data, url: url }).then(callback);
 	};
@@ -31,6 +35,15 @@ module.controller('clientCtrl',['$scope', 'clientService', function($scope,clien
 		clientService.put('/clients/'+client._id,client,function(res){
 			$scope.currentClient = res.data.client;
 			$scope.edit = false;
+		});
+	}
+
+	$scope.add = function(client){
+		clientService.post('/clients/',client,function(res){
+			clientService.get('/clients/all',function(res){
+				$scope.clients = res.data;
+			});
+			$scope.register = false;
 		});
 	}
 
