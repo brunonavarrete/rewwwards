@@ -14,9 +14,8 @@ var ClientSchema = new Schema({
 		unique: true,
 		validate: [mongooseValidate.email, 'invalid email address']
 	},
-	phone: Number,
-	birthday: Date,
-	cards: [] // [{type: Schema.Types.ObjectId, ref: 'Card'}]
+	phone: String,
+	birthday: Date
 }, {timestamps:true} );
 
 var Client = mongoose.model('Client',ClientSchema);

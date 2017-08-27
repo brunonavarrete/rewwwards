@@ -1,0 +1,38 @@
+<div class="container my-4">
+	<form class="inline-form card p-3 row col-md-4">
+		<div class="form-group col-12">
+			<label class="row">
+				<span class="col-5 px-0">First Name </span>
+				<input type="text" name="first_name" class="col form-contol" ng-model="newClient.first_name">
+			</label>
+		</div>
+		<div class="form-group col-12">
+			<label class="row">
+				<span class="col-5 px-0">Last Name </span>
+				<input type="text" name="last_name" class="col form-contol" ng-model="newClient.last_name">
+			</label>
+		</div>
+		<div class="form-group col-12">
+			<label class="row">
+				<span class="col-5 px-0">Email </span>
+				<input type="text" name="email" class="col form-contol" ng-model="newClient.email">
+			</label>
+		</div>
+		<div class="form-group col-12">
+			<label class="row">
+				<span class="col-5 px-0">Phone </span>
+				<input type="text" name="phone" class="col form-contol" ng-model="newClient.phone">
+			</label>
+		</div>
+		<div class="form-group col-12">
+			<label class="row">
+				<span class="col-5 px-0">Birthday </span>
+				<input type="text" name="birthday" class="col form-contol" ng-model="newClient.birthday">
+			</label>
+		</div>
+		<div class="form-group col-12 px-0">
+			<button class="btn btn-light" ng-click="register = !register" >&lt;&lt;</button>
+			<button class="btn btn-success float-right" ng-click="add(newClient)">Save client</button>
+		</div>
+	</form>
+</div>
