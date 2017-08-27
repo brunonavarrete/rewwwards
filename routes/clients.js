@@ -3,7 +3,6 @@ var router = express.Router();
 var path = require('path');
 var Client = require('../models/client');
 
-
 // GET 
 	// view (list)
 		router.get('/', function(req, res, next) {

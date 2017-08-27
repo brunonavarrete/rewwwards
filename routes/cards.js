@@ -14,6 +14,18 @@ var Card = require('../models/card');
 		})
 	});
 
+	// client's cards
+	router.get('/client/:clientId', function(req, res, next) {
+		var client = req.params.clientId;
+		Card.find({client:client})
+		.exec(function(err,cards){
+			if(err){
+				return res.status(500).json({message:err.message});
+			}
+			return res.json(cards);
+		})
+	});
+
 // POST /
 	router.post('/', function(req, res, next) {
 		var card = req.body;
