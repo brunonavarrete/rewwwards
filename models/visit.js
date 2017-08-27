@@ -6,8 +6,10 @@ var mongoose = require('mongoose'),
 var Schema = mongoose.Schema;
 
 var VisitSchema = new Schema({
-	card: String, // { type: Schema.Types.ObjectId, ref: 'Card'},
-	confirmed: { type: Boolean, default: false }
+	card: { 
+		type: Schema.Types.ObjectId,
+		ref: 'Card'
+	}
 }, {timestamps:true} );
 
 var Visit = mongoose.model('Visit',VisitSchema);

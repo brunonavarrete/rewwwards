@@ -35,10 +35,6 @@
 				<button ng-show="edit" ng-click="edit = !edit" class="btn btn-outline-dark">Cancel</button>
 			</div>
 		</form>
-		<div class="col-md-7">
-			<div class="card" ng-repeat="clientCard in clientCards">
-				---- CARD: {{clientCard._id}} ----
-			</div>
-		</div>
+		<card-list></card-list>
 	</div>
 </div>

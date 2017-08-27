@@ -1,0 +1,11 @@
+<div class="col-md-7">
+	<div class="card p-2 mb-2" ng-repeat="clientCard in clientCards">
+		<h5>---- CARD: {{clientCard._id}} ----</h5>
+		<ul>
+			<li ng-repeat="visit in clientCard.vists">
+				VISIT: {{visit._id}}
+			</li>
+		</ul>
+		<button class="btn btn-outline-warning" ng-click="addVisit(currentClient._id,clientCard._id)">Add visit</button>
+	</div>
+</div>
