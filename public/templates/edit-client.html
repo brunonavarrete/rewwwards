@@ -28,7 +28,7 @@
 				<strong>Client since: </strong>{{currentClient.createdAt}}
 			</div>
 			<div class="form-group">
-				<button ng-hide="edit" ng-click="addCard(currentClient._id)" class="btn btn-primary ml-3 float-right">Create card</button>
+				<button ng-hide="edit || !allowNewCard" ng-click="addCard(currentClient._id)" class="btn btn-primary ml-3 float-right">Create card</button>
 				<button ng-hide="edit" ng-click="edit = !edit" class="btn btn-warning">Edit client</button>
 				<button ng-hide="edit" ng-click="showAll()" class="btn btn-outline-dark">Back to list</button>
 				<button ng-show="edit" ng-click="update(currentClient)" class="btn btn-success">Update client</button>

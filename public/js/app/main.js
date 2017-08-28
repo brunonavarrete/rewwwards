@@ -30,10 +30,33 @@ var module = angular.module('rewards', []);
 		$scope.getClient = function(id){
 			dataService.get('/clients/'+id, function(res){
 				$scope.currentClient = res.data;
+				$scope.getCards(id);
 			});
-			dataService.get('/cards/client/'+id, function(res){
-				$scope.clientCards = res.data;
+		}
+
+		$scope.getCards = function(clientId){
+			dataService.get('/cards/client/'+clientId, function(res){
+				if( res.data.length > 0 ){
+					$scope.clientCards = res.data;
+					$scope.lastCard = res.data[res.data.length -1];
+					if( !$scope.lastCard.visits.length || $scope.lastCard.visits.length < 10 ) {
+						$scope.allowNewCard = false;
+					} else {
+						$scope.allowNewCard = true;
+					}
+				} else {
+					$scope.allowNewCard = true;
+				}
 			});
+
+
+			// 	var last_visit = $scope.clientCards[0].visits[ $scope.clientCards[0].visits.length - 1 ];
+			// 	var today = new Date();
+			// 	var last_time = new Date(last_visit.createdAt);
+			// 	var timeDiff = Math.abs(last_time.getTime() - today.getTime());
+			// 	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+
 		}
 
 		$scope.update = function(client){
@@ -63,6 +86,7 @@ var module = angular.module('rewards', []);
 		$scope.addCard = function(clientId){
 			dataService.post('/cards',{ client: clientId }, function(res){
 				$scope.getClient(clientId);
+				$scope.allowNewCard = false;
 			})
 		}
 
@@ -74,7 +98,7 @@ var module = angular.module('rewards', []);
 				var timeDiff = Math.abs(last_time.getTime() - today.getTime());
 				var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
 
-				if(diffDays > 1){
+				if(diffDays > 1){ // if last visit was yesterday
 					dataService.post('/visits',{ card: cardId }, function(res){
 						dataService.put('/cards/'+cardId+'/visit/'+res.data.visit._id,res.visit, function(res){
 							$scope.getClient(clientId);
@@ -82,7 +106,7 @@ var module = angular.module('rewards', []);
 						});
 					})
 				} else {
-					alert('already visited today ('+last_time.getHours()+':00)');
+					alert('already visited today ('+last_time+':00)');
 				}
 			} else {
 				dataService.post('/visits',{ card: cardId }, function(res){
@@ -92,11 +116,6 @@ var module = angular.module('rewards', []);
 					});
 				})
 			}
-		}
-
-		$scope.formatDate = function(date){
-			var date = new Date(date);
-			return date;
 		}
 
 	}]);
