@@ -18,6 +18,7 @@ var Card = require('../models/card');
 	router.get('/client/:clientId', function(req, res, next) {
 		var client = req.params.clientId;
 		Card.find({client:client})
+		.populate('visits')
 		.exec(function(err,cards){
 			if(err){
 				return res.status(500).json({message:err.message});

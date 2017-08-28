@@ -67,8 +67,15 @@ var module = angular.module('rewards', []);
 
 		$scope.addVisit = function(clientId,cardId){
 			dataService.post('/visits',{ card: cardId }, function(res){
-				$scope.getClient(clientId);
+				dataService.put('/cards/'+cardId+'/visit/'+res.data.visit._id,res.visit, function(res){
+					$scope.getClient(clientId);
+				});
 			})
+		}
+
+		$scope.formatDate = function(date){
+			var date = new Date(date);
+			return date;
 		}
 
 	}]);

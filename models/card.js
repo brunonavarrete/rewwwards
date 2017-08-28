@@ -9,7 +9,11 @@ var CardSchema = new Schema({
     client: {
     	type: Schema.Types.ObjectId,
     	ref: 'Client'
-    }
+    },
+    visits: [{
+    	type: Schema.Types.ObjectId,
+    	ref: 'Visit'
+    }],
 }, { timestamps:true } );
 
 var Card = mongoose.model('Card',CardSchema);
