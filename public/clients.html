@@ -13,8 +13,13 @@
 	    <client-list ng-show="!register"></client-list>
       <edit ng-show="currentClient"></edit>
       <register ng-show="register"></register>
-	</div>
-	<script type="text/javascript" src="/static/js/angular.min.js"></script>
-	<script type="text/javascript" src="/static/js/app/main.js"></script>
+    </div>
+    <div class="container">
+      <div>
+        <button ng-hide="currentClient" ng-show="!register" ng-click="register = !register" class="btn btn-success ml-3 float-right">Add client</button>
+      </div>
+    </div>
+  	<script type="text/javascript" src="/static/js/angular.min.js"></script>
+  	<script type="text/javascript" src="/static/js/app/main.js"></script>
   </body>
 </html>
