@@ -1,9 +1,10 @@
 <div class="col-md-7">
-	<div class="card p-2 mb-2" ng-repeat="clientCard in clientCards">
+	<div class="card p-2 mb-2" ng-repeat="clientCard in clientCards" ng-class="">
 		<h5>---- CARD: {{clientCard._id}} ----</h5>
 		<ul>
 			<li ng-repeat="visit in clientCard.visits">{{ visit.createdAt }}</li>
 		</ul>
-		<button class="btn btn-outline-warning" ng-hide="visitedToday" ng-click="addVisit(currentClient._id,clientCard._id)">Add visit</button>
+		<p ng-show="visitedToday && !allowNewCard && clientCard._id == lastCard._id" class="text-warning">Already visited today</p>
+		<button class="btn btn-outline-warning" ng-hide="visitedToday || clientCard._id !== lastCard._id" ng-click="addVisit(currentClient._id,clientCard._id)">Add visit</button>
 	</div>
 </div>

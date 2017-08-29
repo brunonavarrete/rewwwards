@@ -64,6 +64,7 @@ var module = angular.module('rewards', []);
 						}
 					} else {
 						$scope.allowNewCard = true;
+						$scope.visitedToday = true;
 					}
 				} else {
 					$scope.allowNewCard = true;
