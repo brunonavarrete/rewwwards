@@ -21,7 +21,12 @@ var module = angular.module('rewards', []);
 // controllers
 	module.controller('clientCtrl',['$scope', 'dataService', function($scope,dataService){
 
-		$scope.helloWorld = 'hello world';
+		$scope.seed = function(){
+			dataService.post('/seed/clients/');
+			dataService.post('/seed/cards/');
+			dataService.post('/seed/visits/');
+			$scope.showAll();
+		};
 
 		dataService.get('/clients/all', function(res){
 			$scope.clients = res.data;
@@ -41,6 +46,22 @@ var module = angular.module('rewards', []);
 					$scope.lastCard = res.data[res.data.length -1];
 					if( !$scope.lastCard.visits.length || $scope.lastCard.visits.length < 10 ) {
 						$scope.allowNewCard = false;
+						if( $scope.lastCard.visits.length ){
+							var last_visit = $scope.lastCard.visits[ $scope.lastCard.visits.length - 1 ];
+							var today = new Date();
+							var last_time = new Date(last_visit.createdAt);
+							var timeDiff = Math.abs(last_time.getTime() - today.getTime());
+							var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+							console.log(last_time);
+							console.log(today);
+							if(diffDays > 1){ // if last visit was yesterday
+								$scope.visitedToday = false;
+							} else {
+								$scope.visitedToday = true;
+							}
+						} else {
+							$scope.visitedToday = false;
+						}
 					} else {
 						$scope.allowNewCard = true;
 					}
@@ -48,15 +69,6 @@ var module = angular.module('rewards', []);
 					$scope.allowNewCard = true;
 				}
 			});
-
-
-			// 	var last_visit = $scope.clientCards[0].visits[ $scope.clientCards[0].visits.length - 1 ];
-			// 	var today = new Date();
-			// 	var last_time = new Date(last_visit.createdAt);
-			// 	var timeDiff = Math.abs(last_time.getTime() - today.getTime());
-			// 	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-
 		}
 
 		$scope.update = function(client){
@@ -91,31 +103,12 @@ var module = angular.module('rewards', []);
 		}
 
 		$scope.addVisit = function(clientId,cardId){
-			if( $scope.clientCards[0].visits.length > 0 ){
-				var last_visit = $scope.clientCards[0].visits[ $scope.clientCards[0].visits.length - 1 ];
-				var today = new Date();
-				var last_time = new Date(last_visit.createdAt);
-				var timeDiff = Math.abs(last_time.getTime() - today.getTime());
-				var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
-
-				if(diffDays > 1){ // if last visit was yesterday
-					dataService.post('/visits',{ card: cardId }, function(res){
-						dataService.put('/cards/'+cardId+'/visit/'+res.data.visit._id,res.visit, function(res){
-							$scope.getClient(clientId);
-							alert('new visit!');
-						});
-					})
-				} else {
-					alert('already visited today ('+last_time+':00)');
-				}
-			} else {
-				dataService.post('/visits',{ card: cardId }, function(res){
-					dataService.put('/cards/'+cardId+'/visit/'+res.data.visit._id,res.visit, function(res){
-						$scope.getClient(clientId);
-						alert('new visit!');
-					});
-				})
-			}
+			dataService.post('/visits',{ card: cardId }, function(res){
+				dataService.put('/cards/'+cardId+'/visit/'+res.data.visit._id,res.visit, function(res){
+					$scope.getClient(clientId);
+					alert('new visit!');
+				});
+			})
 		}
 
 	}]);

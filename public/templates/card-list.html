@@ -4,6 +4,6 @@
 		<ul>
 			<li ng-repeat="visit in clientCard.visits">{{ visit.createdAt }}</li>
 		</ul>
-		<button class="btn btn-outline-warning" ng-click="addVisit(currentClient._id,clientCard._id)">Add visit</button>
+		<button class="btn btn-outline-warning" ng-hide="visitedToday" ng-click="addVisit(currentClient._id,clientCard._id)">Add visit</button>
 	</div>
 </div>

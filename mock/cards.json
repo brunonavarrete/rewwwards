@@ -1,0 +1,41 @@
+[
+    {
+        "_id": "59a4a54ec213792f54c6a881",
+        "updatedAt": "2017-08-28T23:44:14.111Z",
+        "createdAt": "2017-08-28T23:20:46.573Z",
+        "client": "59a207a607268d0fbd9e71cc",
+        "__v": 10,
+        "visits": [
+            "59a4a54fc213792f54c6a882",
+            "59a4aabee375de36c70dff8f",
+            "59a4aac0e375de36c70dff90",
+            "59a4aac1e375de36c70dff91",
+            "59a4aac2e375de36c70dff92",
+            "59a4aac5e375de36c70dff93",
+            "59a4aac7e375de36c70dff94",
+            "59a4aacae375de36c70dff95",
+            "59a4aacce375de36c70dff96",
+            "59a4aacee375de36c70dff97"
+        ]
+    },
+    {
+        "_id": "59a4acfe03401b373462ac72",
+        "updatedAt": "2017-08-28T23:53:40.202Z",
+        "createdAt": "2017-08-28T23:53:34.303Z",
+        "client": "59a2098d9f4f0e10326e7ff4",
+        "__v": 1,
+        "visits": [
+            "59a4ad0403401b373462ac73"
+        ]
+    },
+    {
+        "_id": "59a4aef0f710fc3785312236",
+        "updatedAt": "2017-08-29T00:01:59.698Z",
+        "createdAt": "2017-08-29T00:01:52.703Z",
+        "client": "59a208479f4f0e10326e7ff3",
+        "__v": 1,
+        "visits": [
+            "59a4aef7f710fc3785312237"
+        ]
+    }
+]
