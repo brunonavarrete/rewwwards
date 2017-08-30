@@ -1,10 +1,9 @@
-<div class="container table-responsive my-4">
+<div class="container-fluid table-responsive my-4">
 	<table ng-show="!currentClient" class="table table-striped">
 	  <thead>
 	    <tr>
 	      <th>Name</th>
 	      <th>Email</th>
-	      <th>Current card</th>
 	      <th class="text-center">Actions</th>
 	    </tr>
 	  </thead>
@@ -12,9 +11,15 @@
 	    <tr ng-repeat="client in clients">
 	      <td ng-model="client.first_name">{{client.first_name}} {{client.last_name}}</td>
 	      <td>{{client.email}}</td>
-	      <td>****</td>
 	      <td class="text-center">
-	      	<button ng-click="getClient(client._id)" class="btn btn-light">Profile</button>
+	      	<button ng-click="getClient(client._id)" class="btn btn-sm btn-warning">
+	      		<i class="pe-7s-user-female"></i>
+	      		<span>&nbsp; Edit</span>
+	      	</button>
+	      	<button ng-click="" class="btn btn-sm btn-danger">
+	      		<i class="pe-7s-delete-user"></i>
+	      		<span>&nbsp; Delete</span>
+	      	</button>
 	      </td>
 	    </tr>
 	  </tbody>

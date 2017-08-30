@@ -29,10 +29,18 @@
 			</div>
 			<div class="form-group">
 				<button ng-hide="edit || !allowNewCard" ng-click="addCard(currentClient._id)" class="btn btn-primary ml-3 float-right">Create card</button>
-				<button ng-hide="edit" ng-click="edit = !edit" class="btn btn-warning">Edit client</button>
-				<button ng-hide="edit" ng-click="showAll()" class="btn btn-outline-dark">Back to list</button>
-				<button ng-show="edit" ng-click="update(currentClient)" class="btn btn-success">Update client</button>
-				<button ng-show="edit" ng-click="edit = !edit" class="btn btn-outline-dark">Cancel</button>
+				<button ng-hide="edit" ng-click="edit = !edit" class="btn btn-warning float-right">
+					<i class="pe-7s-scissors"></i>  Edit client
+				</button>
+				<button ng-show="edit" ng-click="update(currentClient)" class="btn btn-success float-right">
+					<i class="pe-7s-diskette"></i> Update client
+				</button>
+				<button ng-hide="edit" ng-click="showAll()" class="btn btn-info">
+					<i class="pe-7s-back"></i> Back to list
+				</button>
+				<button ng-show="edit" ng-click="edit = !edit" class="btn btn-info">
+					<i class="pe-7s-back"></i> Cancel
+				</button>
 			</div>
 		</form>
 		<card-list></card-list>
