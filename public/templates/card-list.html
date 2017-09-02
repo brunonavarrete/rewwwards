@@ -1,10 +1,17 @@
-<div class="col-md-7">
-	<div class="card p-2 mb-2" ng-repeat="clientCard in clientCards" ng-class="">
-		<h5>---- CARD: {{clientCard._id}} ----</h5>
-		<ul>
-			<li ng-repeat="visit in clientCard.visits">{{ visit.createdAt }}</li>
-		</ul>
-		<p ng-show="visitedToday && !allowNewCard && clientCard._id == lastCard._id" class="text-warning">Already visited today</p>
-		<button class="btn btn-outline-warning" ng-hide="visitedToday || clientCard._id !== lastCard._id" ng-click="addVisit(currentClient._id,clientCard._id)">Add visit</button>
+<div class="col-md-4">
+	<div class="card" ng-repeat="clientCard in clientCards" ng-class="">
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="stars">
+					<li ng-repeat="visit in clientCard.visits">
+						<i class="fa fa-star"></i>
+					</li>
+				</ul>
+				<p ng-show="visitedToday && !allowNewCard && clientCard._id == lastCard._id" class="text-warning">Already visited today</p>
+			</div>
+			<div class="col-xs-12">
+				<button class="btn btn-outline-warning" ng-hide="visitedToday || clientCard._id !== lastCard._id" ng-click="addVisit(currentClient._id,clientCard._id)">Add visit</button>
+			</div>
+		</div>
 	</div>
 </div>

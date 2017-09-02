@@ -1,48 +1,57 @@
-<div class="container my-4">
-	<div class="row">
-		<form ng-show="currentClient" class="card p-3 col-md-5">
-			<div class="form-group">
-				<h4>
-					<span ng-hide="edit">{{currentClient.first_name}}</span>
-					<span ng-hide="edit">&nbsp;{{currentClient.last_name}}</span>
-					<input ng-show="edit" type="text" name="first_name" ng-model="currentClient.first_name" class="col-sm-6 form-contol">
-					<input ng-show="edit" type="text" name="last_name" ng-model="currentClient.last_name" class="col-sm-6 float-md-right form-contol">
-				</h4>
-			</div>
-			<div class="form-group">
-				<strong>Email: </strong>
-				<span ng-hide="edit">{{currentClient.email}}</span>
-				<input ng-show="edit" type="text" name="email" ng-model="currentClient.email" class="form-contol">
-			</div>
-			<div class="form-group">
-				<strong>Phone: </strong>
-				<span ng-hide="edit">{{currentClient.phone}}</span>
-				<input ng-show="edit" type="text" name="phone" ng-model="currentClient.phone" class="form-contol">
-			</div>
-			<div class="form-group">
-				<strong>Birthday: </strong>
-				<span ng-hide="edit">{{currentClient.birthday}}</span>
-				<input ng-show="edit" type="text" name="birthday" ng-model="currentClient.birthday" class="form-contol">
-			</div>
-			<div class="form-group">
-				<strong>Client since: </strong>{{currentClient.createdAt}}
-			</div>
-			<div class="form-group">
-				<button ng-hide="edit || !allowNewCard" ng-click="addCard(currentClient._id)" class="btn btn-primary ml-3 float-right">Create card</button>
-				<button ng-hide="edit" ng-click="edit = !edit" class="btn btn-warning float-right">
-					<i class="pe-7s-scissors"></i>  Edit client
-				</button>
-				<button ng-show="edit" ng-click="update(currentClient)" class="btn btn-success float-right">
-					<i class="pe-7s-diskette"></i> Update client
-				</button>
-				<button ng-hide="edit" ng-click="showAll()" class="btn btn-info">
-					<i class="pe-7s-back"></i> Back to list
-				</button>
-				<button ng-show="edit" ng-click="edit = !edit" class="btn btn-info">
-					<i class="pe-7s-back"></i> Cancel
-				</button>
+<div class="container-fluid my-4">
+
+	<div class="card col-md-8">
+		<form ng-show="currentClient">
+	        <div class="header">
+	        	<div class="row">
+		            <h4 class="title">
+						<span ng-hide="edit">{{currentClient.first_name}}</span>
+						<span ng-hide="edit">&nbsp;{{currentClient.last_name}}</span>
+						<input ng-show="edit" type="text" name="first_name" ng-model="currentClient.first_name" class="col-sm-6 form-contol">
+						<input ng-show="edit" type="text" name="last_name" ng-model="currentClient.last_name" class="col-sm-6 float-md-right form-contol">
+		            </h4>
+		        </div>
+	        </div>
+	        <div class="content">
+			    <div class="row">
+					<div class="form-group">
+						<strong>Email: </strong>
+						<span ng-hide="edit">{{currentClient.email}}</span>
+						<input ng-show="edit" type="text" name="email" ng-model="currentClient.email" class="form-contol">
+					</div>
+					<div class="form-group">
+						<strong>Phone: </strong>
+						<span ng-hide="edit">{{currentClient.phone}}</span>
+						<input ng-show="edit" type="text" name="phone" ng-model="currentClient.phone" class="form-contol">
+					</div>
+					<div class="form-group">
+						<strong>Birthday: </strong>
+						<span ng-hide="edit">{{currentClient.birthday}}</span>
+						<input ng-show="edit" type="text" name="birthday" ng-model="currentClient.birthday" class="form-contol">
+					</div>
+					<div class="form-group">
+						<strong>Client since: </strong>{{currentClient.createdAt}}
+					</div>
+					<div class="form-group">
+						<button ng-hide="edit || !allowNewCard" ng-click="addCard(currentClient._id)" class="btn btn-primary float-right">
+							<i class="pe-7s-diamond"></i> Create card
+						</button>
+						<button ng-hide="edit" ng-click="edit = !edit" class="btn btn-warning float-right">
+							<i class="pe-7s-scissors"></i>  Edit client
+						</button>
+						<button ng-show="edit" ng-click="update(currentClient)" class="btn btn-success float-right">
+							<i class="pe-7s-diskette"></i> Update client
+						</button>
+						<button ng-hide="edit" ng-click="showAll()" class="btn btn-info">
+							<i class="pe-7s-back"></i> Back to list
+						</button>
+						<button ng-show="edit" ng-click="edit = !edit" class="btn btn-info">
+							<i class="pe-7s-back"></i> Cancel
+						</button>
+					</div>
+				</div>
 			</div>
 		</form>
-		<card-list></card-list>
 	</div>
+	<card-list></card-list>
 </div>

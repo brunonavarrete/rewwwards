@@ -107,7 +107,6 @@ var module = angular.module('rewards', []);
 			dataService.post('/visits',{ card: cardId }, function(res){
 				dataService.put('/cards/'+cardId+'/visit/'+res.data.visit._id,res.visit, function(res){
 					$scope.getClient(clientId);
-					alert('new visit!');
 				});
 			})
 		}

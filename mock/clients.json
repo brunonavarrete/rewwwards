@@ -64,27 +64,5 @@
         "phone": "+459-27-9120755",
         "birthday": "1970-01-01T00:00:00.001Z",
         "__v": 0
-    },
-    {
-        "_id": "59a4b7fde30dbf38df919d8d",
-        "updatedAt": "2017-08-29T00:40:29.122Z",
-        "createdAt": "2017-08-29T00:40:29.122Z",
-        "first_name": "Rudyard",
-        "last_name": "Randall",
-        "email": "fipes@hotmail.com",
-        "phone": "+655-43-1475722",
-        "birthday": "1998-09-12T05:00:00.000Z",
-        "__v": 0
-    },
-    {
-        "_id": "59a4b818e30dbf38df919d8e",
-        "updatedAt": "2017-08-29T00:40:56.229Z",
-        "createdAt": "2017-08-29T00:40:56.229Z",
-        "first_name": "Signe",
-        "last_name": "Mccullough",
-        "email": "cyzaxugon@hotmail.com",
-        "phone": "+475-20-8739953",
-        "birthday": "1995-01-24T06:00:00.000Z",
-        "__v": 0
     }
 ]
